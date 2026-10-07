@@ -1,6 +1,7 @@
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { MeridianGraphic } from '../components/MeridianGraphic'
+import { business } from '../data/business'
 import { profile } from '../data/profile'
 
 export function Hero() {
@@ -45,6 +46,14 @@ export function Hero() {
               <div>
                 <dt>Languages</dt>
                 <dd>{profile.languages.join(' · ')}</dd>
+              </div>
+              <div>
+                <dt>Independent practice</dt>
+                <dd>
+                  <a href="#business" className="hero__meta-link">
+                    {business.name}
+                  </a>
+                </dd>
               </div>
             </dl>
           </div>

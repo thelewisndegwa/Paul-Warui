@@ -19,6 +19,7 @@ npm run preview   # serve the production build
 | `src/data/profile.ts` | Name, contact, languages, résumé path, portrait/LinkedIn slots |
 | `src/data/experience.ts` | Roles (responsibilities are the résumé bullets) |
 | `src/data/credentials.ts` | Education, registration, memberships, certifications |
+| `src/data/business.ts` | HealthFirst Nursing Services — ASIC business name registration, ABN (street address intentionally omitted) |
 | `src/data/practice.ts` | Practice areas, leadership, emergency services, approach (all cross-referenced to roles) |
 | `src/sections/*` | One component per page section, in page order |
 | `src/components/*` | Nav, Timeline, ExperienceEntry, CredentialItem, SectionHeading, Button, Container |

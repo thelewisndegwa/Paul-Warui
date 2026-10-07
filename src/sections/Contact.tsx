@@ -1,5 +1,6 @@
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
+import { business } from '../data/business'
 import { profile } from '../data/profile'
 
 export function Contact() {
@@ -71,6 +72,43 @@ export function Contact() {
             </div>
           </dl>
         </div>
+
+        <aside id="business" className="business" aria-labelledby="business-title" data-reveal>
+          <div className="business__intro">
+            <p className="eyebrow">Independent practice</p>
+            <h3 id="business-title" className="business__name">
+              {business.name}
+            </h3>
+            <p className="business__body">
+              Business name held by {business.holder} and registered with the {business.registrar}{' '}
+              on {business.registrationDate}.
+            </p>
+          </div>
+          <dl className="business__details">
+            <div>
+              <dt>ABN</dt>
+              <dd>{business.abn}</dd>
+            </div>
+            <div>
+              <dt>Holder</dt>
+              <dd>
+                {business.holder} · {business.holderType}
+              </dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>
+                {business.status} · ASIC
+              </dd>
+            </div>
+            <div>
+              <dt>Business email</dt>
+              <dd>
+                <a href={`mailto:${business.email}`}>{business.email}</a>
+              </dd>
+            </div>
+          </dl>
+        </aside>
       </Container>
     </section>
   )

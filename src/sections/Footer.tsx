@@ -1,4 +1,5 @@
 import { Container } from '../components/Container'
+import { business } from '../data/business'
 import { navLinks, profile } from '../data/profile'
 
 export function Footer() {
@@ -32,7 +33,9 @@ export function Footer() {
             <li key={c}>{c}</li>
           ))}
         </ol>
-        <p className="footer__copy">© {new Date().getFullYear()} Paul Kariuki Warui</p>
+        <p className="footer__copy">
+          © {new Date().getFullYear()} Paul Kariuki Warui · {business.name} · ABN {business.abn}
+        </p>
       </Container>
     </footer>
   )

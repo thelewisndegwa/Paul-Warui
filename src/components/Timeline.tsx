@@ -6,7 +6,7 @@ export interface TimelineEntry {
   year: string
   /** Full period, e.g. "1999 – 2008" */
   period: string
-  kind: 'role' | 'education'
+  kind: 'role' | 'education' | 'business'
   title: string
   organisation: string
   location: string
@@ -23,16 +23,23 @@ interface TimelineProps {
   ariaLabel: string
 }
 
+const kindLabel: Record<TimelineEntry['kind'], string> = {
+  role: 'Role',
+  education: 'Education',
+  business: 'Registered business',
+}
+
 export function Timeline({ entries, ariaLabel }: TimelineProps) {
   return (
     <ol className="timeline" aria-label={ariaLabel}>
       {entries.map((entry, i) => (
         <li
           key={entry.id}
+          id={`tl-${entry.id}`}
           className={[
             'tl',
             entry.ongoing ? 'tl--ongoing' : '',
-            entry.kind === 'education' ? 'tl--education' : '',
+            entry.kind !== 'role' ? `tl--${entry.kind}` : '',
             entry.country ? `tl--${entry.country.toLowerCase()}` : '',
           ]
             .filter(Boolean)
@@ -53,7 +60,7 @@ export function Timeline({ entries, ariaLabel }: TimelineProps) {
 
           <div className="tl__body">
             <p className="tl__kind eyebrow">
-              {entry.kind === 'education' ? 'Education' : 'Role'} · {entry.location}
+              {kindLabel[entry.kind]} · {entry.location}
             </p>
             <h3 className="tl__title">
               {entry.href ? (
@@ -77,7 +84,7 @@ export function Timeline({ entries, ariaLabel }: TimelineProps) {
             ) : null}
             {entry.href ? (
               <a href={entry.href} className="textlink tl__more">
-                Role details <span aria-hidden="true">↓</span>
+                {entry.kind === 'role' ? 'Role details' : 'Details'} <span aria-hidden="true">↓</span>
               </a>
             ) : null}
           </div>

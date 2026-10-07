@@ -1,13 +1,15 @@
 import { Container } from '../components/Container'
 import { SectionHeading } from '../components/SectionHeading'
 import { Timeline, type TimelineEntry } from '../components/Timeline'
+import { business } from '../data/business'
 import { education } from '../data/credentials'
 import { rolesChronological } from '../data/experience'
 
 /**
- * Builds the timeline from roles + the Australian degree, ordered by year.
- * Only the ECU degree appears here (it marks the transition into Australian
- * practice); the full education list lives in its own section.
+ * Builds the timeline from roles, the Australian degree and the registered
+ * business, ordered by year. Only the ECU degree appears here (it marks the
+ * transition into Australian practice); the full education list lives in its
+ * own section.
  */
 function buildEntries(): TimelineEntry[] {
   const roleEntries: TimelineEntry[] = rolesChronological.map((r) => ({
@@ -42,7 +44,23 @@ function buildEntries(): TimelineEntry[] {
       ]
     : []
 
-  return [...roleEntries, ...eduEntries].sort(
+  const businessEntry: TimelineEntry = {
+    id: 'business-healthfirst',
+    year: business.registrationYear,
+    period: 'Oct 2026 – Present',
+    kind: 'business',
+    title: business.name,
+    organisation: `Business name holder · ABN ${business.abn}`,
+    location: business.location,
+    country: 'Australia',
+    summary: `Business name registered with the ${business.registrar}. Holder: ${business.holder}.`,
+    href: '#business',
+    ongoing: true,
+  }
+
+  // Stable sort keeps same-year entries in insertion order
+  // (Congress, May 2026, before the October 2026 registration).
+  return [...roleEntries, ...eduEntries, businessEntry].sort(
     (a, b) => Number.parseInt(a.year, 10) - Number.parseInt(b.year, 10),
   )
 }
