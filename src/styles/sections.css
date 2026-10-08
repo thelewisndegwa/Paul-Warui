@@ -522,6 +522,60 @@
 }
 
 /* ==================================================================
+   Field notes (unnumbered photo band between 03 and 04)
+================================================================== */
+.fieldnotes {
+  border-top: 1px solid var(--line);
+}
+
+.fieldnotes__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  padding-bottom: 1rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--ink);
+}
+
+.fieldnotes__eyebrow {
+  color: var(--ink);
+}
+
+.fieldnotes__lede {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--ink-2);
+}
+
+.fieldnotes__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 40em) {
+  .fieldnotes__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fieldnotes__grid .photo--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 60em) {
+  /* One 2fr track for the 3:2 image and two 1fr tracks for the 3:4 images
+     produce identical heights, so all three captions sit on one line. */
+  .fieldnotes__grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .fieldnotes__grid .photo--wide {
+    grid-column: auto;
+  }
+}
+
+/* ==================================================================
    04 — Clinical practice
 ================================================================== */
 .practice {
@@ -1076,6 +1130,27 @@
   font-variant-numeric: tabular-nums;
 }
 
+.emerg__side {
+  display: grid;
+  gap: 2rem;
+  align-self: start;
+}
+
+/* Photo figure recoloured for the dark band */
+.emerg__photo .photo__frame {
+  background: color-mix(in srgb, var(--paper) 6%, transparent);
+  border-color: color-mix(in srgb, var(--paper) 22%, transparent);
+}
+.emerg__photo .photo__caption {
+  border-top-color: color-mix(in srgb, var(--paper) 22%, transparent);
+}
+.emerg__photo .photo__context {
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+}
+.emerg__photo .photo__link:hover {
+  color: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+
 .emerg__aside {
   padding: 1.5rem;
   border: 1px solid color-mix(in srgb, var(--paper) 22%, transparent);
@@ -1127,6 +1202,15 @@
   }
   .emerg__period {
     white-space: nowrap;
+  }
+}
+
+/* Tablet: photo and credentials side by side beneath the table */
+@media (min-width: 48em) and (max-width: 63.99em) {
+  .emerg__side {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
   }
 }
 

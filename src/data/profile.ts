@@ -1,3 +1,5 @@
+import { portrait, type Photo } from './photos'
+
 /**
  * Core profile data. Source of truth: "Paul Warui Resume Aug 26.pdf".
  * Do not add facts here that are not in the résumé.
@@ -16,11 +18,10 @@ export const profile = {
   linkedin: null as string | null,
 
   /**
-   * Professional portrait. Drop an image into /public (e.g. /public/portrait.jpg)
-   * and set { src: '/portrait.jpg', alt: 'Paul Kariuki Warui' } to replace the
-   * editorial graphic in the hero.
+   * Hero portrait. Defined in `photos.ts`; set to null to fall back to the
+   * editorial Meridian graphic.
    */
-  portrait: null as { src: string; alt: string } | null,
+  portrait: portrait as Photo | null,
 
   /** PDF lives in /public/resume. Replace the file to update the download. */
   resumeUrl: '/resume/Paul-Kariuki-Warui-Resume.pdf',

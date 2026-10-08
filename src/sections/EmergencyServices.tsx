@@ -1,4 +1,6 @@
 import { Container } from '../components/Container'
+import { PhotoFigure } from '../components/PhotoFigure'
+import { emergencyPhoto } from '../data/photos'
 import { emergencyCredentials, emergencyRecords } from '../data/practice'
 
 export function EmergencyServices() {
@@ -44,16 +46,25 @@ export function EmergencyServices() {
             </tbody>
           </table>
 
-          <aside className="emerg__aside" data-reveal aria-labelledby="emerg-cred-title">
-            <h3 id="emerg-cred-title" className="eyebrow emerg__aside-title">
-              Emergency credentials
-            </h3>
-            <ul className="emerg__creds">
-              {emergencyCredentials.map((c) => (
-                <li key={c}>{c}</li>
-              ))}
-            </ul>
-          </aside>
+          <div className="emerg__side">
+            <PhotoFigure
+              photo={emergencyPhoto}
+              sizes="(min-width: 64em) 22rem, calc(100vw - 2.5rem)"
+              className="emerg__photo"
+              reveal
+            />
+
+            <aside className="emerg__aside" data-reveal aria-labelledby="emerg-cred-title">
+              <h3 id="emerg-cred-title" className="eyebrow emerg__aside-title">
+                Emergency credentials
+              </h3>
+              <ul className="emerg__creds">
+                {emergencyCredentials.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
+            </aside>
+          </div>
         </div>
       </Container>
     </section>

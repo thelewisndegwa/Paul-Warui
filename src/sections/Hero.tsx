@@ -2,6 +2,7 @@ import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { MeridianGraphic } from '../components/MeridianGraphic'
 import { business } from '../data/business'
+import { photoSrc, photoSrcSet } from '../data/photos'
 import { profile } from '../data/profile'
 
 export function Hero() {
@@ -59,17 +60,22 @@ export function Hero() {
           </div>
 
           {/*
-            Portrait slot. When `profile.portrait` is set, the image replaces
-            the editorial graphic. Until then the frame carries the geography.
+            Portrait slot. When `profile.portrait` is set, the photograph
+            replaces the editorial graphic. It is the page's LCP element, so it
+            loads eagerly with high priority.
           */}
           <figure className="hero__visual">
             {profile.portrait ? (
               <img
-                src={profile.portrait.src}
+                src={photoSrc(profile.portrait)}
+                srcSet={photoSrcSet(profile.portrait)}
+                sizes="(min-width: 56.25em) min(30rem, 40vw), min(30rem, calc(100vw - 2.5rem))"
                 alt={profile.portrait.alt}
                 className="hero__portrait"
-                width="800"
-                height="1000"
+                width={profile.portrait.width}
+                height={profile.portrait.height}
+                fetchPriority="high"
+                decoding="async"
               />
             ) : (
               <MeridianGraphic />

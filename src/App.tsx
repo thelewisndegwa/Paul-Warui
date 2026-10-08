@@ -7,6 +7,7 @@ import { CurrentPractice } from './sections/CurrentPractice'
 import { Education } from './sections/Education'
 import { EmergencyServices } from './sections/EmergencyServices'
 import { Experience } from './sections/Experience'
+import { FieldNotes } from './sections/FieldNotes'
 import { Footer } from './sections/Footer'
 import { Glance } from './sections/Glance'
 import { Hero } from './sections/Hero'
@@ -27,6 +28,7 @@ export default function App() {
         <Hero />
         <Glance />
         <Journey />
+        <FieldNotes />
         <Practice />
         <CurrentPractice />
         <Experience />
