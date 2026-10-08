@@ -420,7 +420,7 @@ svg {
     transform 0.8s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.js [data-reveal].is-in {
+.js [data-reveal][data-revealed] {
   opacity: 1;
   transform: none;
 }
